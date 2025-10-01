@@ -4,8 +4,8 @@
 **Real-time Radar Visualization**  
 Processing sketch renders a sweeping radar display with live blip detection.  
 
-**ESP32 Radar Interface**  
-RD-03D radar module connected via UART, parses x/y, distance, and angle.  
+**ESP32 Human Detection Radar Interface**  
+RD-03D radar module connected via UART, detects and tracks human targets only.  
 
 **Distance & Angle Tracking**  
 Targets are displayed as red blips with telemetry (distance in meters, angle in degrees).  
@@ -29,7 +29,7 @@ RadarScope-ESP32/
 ---
 
 ## ⚙️ Requirements
-**Hardware:** ESP32, RD-03D radar module, USB cable  
+**Hardware:** ESP32, RD-03D human presence radar module, USB cable  
 
 **Software:**  
 - Arduino IDE or PlatformIO (for ESP32 code)  
@@ -53,18 +53,19 @@ RadarScope-ESP32/
 1. Flash the ESP32 with `radar_uart.ino`.  
 2. Open Processing and run `RadarScope.pde`.  
 3. Set the correct COM port in the code (`COM7` default).  
-4. Watch your radar blips appear live!  
+4. Watch human targets appear as radar blips in real time!  
 
 ---
 
 ## 📝 Notes
+- Designed for **human detection only** — the RD-03D module filters non-human objects.  
 - ESP32 task reads UART frames and decodes target distance/angle.  
 - Processing GUI scales automatically to window size (default 800x420).  
 - Targets out of range reset to `0`.  
-- Designed for single target detection mode of RD-03D.  
+- Optimized for **single target detection mode**.  
 
 ---
 
 ## 📡 About
-RadarScope-ESP32 is a DIY real-time radar visualizer using an ESP32 and RD-03D radar module.  
-It combines embedded UART parsing with Processing graphics to create a retro-style sweeping radar screen.  
+RadarScope-ESP32 is a DIY real-time **human detection radar visualizer** using an ESP32 and RD-03D radar module.  
+It combines embedded UART parsing with Processing graphics to create a retro-style sweeping radar screen focused on human presence tracking.  
