@@ -1,4 +1,4 @@
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/38a7c198-c505-4859-bdec-bfc3a408f9dd" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/52b6fc39-ddce-462b-b8fc-86cf13314e18" />
 
 # RadarScope-ESP32
 
