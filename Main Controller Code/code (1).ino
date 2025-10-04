@@ -31,11 +31,9 @@ void processRadarData(const uint8_t* buf) {
   target1_speed = (buf[8] | (buf[9] << 8)) - 0x10;
   target1_distance_res = (buf[10] | (buf[11] << 8));
 
-  // Convert to polar coordinates
   target1_distance = sqrtf((float)target1_x * target1_x + (float)target1_y * target1_y);
-  target1_angle = atan2f((float)target1_y, (float)target1_x) * 57.2958f; // radians → degrees
+  target1_angle = atan2f((float)target1_y, (float)target1_x) * 57.2958f; // rad→deg
 
-  // Print as CSV: valid,distance(cm),angle(deg)
   Serial.printf("%d,%.1f,%.2f\n", 1, target1_distance * 0.1f, target1_angle);
 }
 
@@ -53,7 +51,7 @@ void uartTask(void* pvParameters) {
         RX_count = 0; // reset after parsing
       }
     }
-    vTaskDelay(1); // allow other tasks to run
+    vTaskDelay(1); // yield to other tasks
   }
 }
 
@@ -71,16 +69,16 @@ void setup() {
   // Create UART reader task pinned to core 1
   xTaskCreatePinnedToCore(
     uartTask,        // task function
-    "uartTask",      // task name
+    "uartTask",      // name
     4096,            // stack size
-    NULL,            // parameters
+    NULL,            // params
     10,              // priority
     NULL,            // task handle
-    1                // core 1
+    1                // core
   );
 }
 
 // ----------------- LOOP -----------------
 void loop() {
-  // Main loop is free for WiFi, BLE, sensors, etc.
+  // main loop stays free for other logic (WiFi, BLE, sensors…)
 }
